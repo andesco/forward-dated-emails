@@ -1,0 +1,17 @@
+{
+  "name": "forward-dated-emails",
+  "version": "1.0.0",
+  "description": "Cloudflare Email Worker for date-based email forwarding",
+  "main": "src/index.js",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "tail": "wrangler tail"
+  },
+  "keywords": ["cloudflare", "workers", "email"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^4.42.0"
+  }
+}

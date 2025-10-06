@@ -4,9 +4,9 @@
   "description": "Cloudflare Email Worker for date-based email forwarding",
   "main": "src/index.js",
   "scripts": {
-    "deploy": "wrangler deploy",
-    "dev": "wrangler dev",
-    "tail": "wrangler tail"
+    "deploy": "wrangler deploy --config wrangler.local.toml",
+    "dev": "wrangler dev --config wrangler.local.toml",
+    "tail": "wrangler tail --config wrangler.local.toml"
   },
   "keywords": ["cloudflare", "workers", "email"],
   "author": "",

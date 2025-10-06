@@ -26,7 +26,7 @@ The email worker parses the recipient email address for a date in `YYYY-MM-DD` f
 1. Deploy `forward-dated-emails` to Cloudflare.
 
 2. Create a catch-all email address:\
-   Account → Domain → Email Routing → Routing Rules → [Catch&#8209;all: Edit][dash-catch]
+   Account → Domain → Email Routing → Routin Rules → [Catch&#8209;all: Edit][dash-catch]
 
 3. Action: `Send to Worker`\
    Destination: `forward-dated-emails`\

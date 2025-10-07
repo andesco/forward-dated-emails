@@ -19,7 +19,11 @@ The email worker parses the recipient email address for a date in `YYYY-MM-DD` f
    Account → Domain → [Email Routing][dash-enable]
 
 2. **Add [verified email addresses][doc2]**:\
+   […] → Email Routing → [Destination addresses][dash-catch]
+
+3. **Enable [subaddressing][sub]**:\
    Account → Domain → Email Routing → [Destination addresses][dash-catch]
+    Enable subaddressing
 
 ### Setup
 
@@ -81,6 +85,8 @@ npm run dev    # wrangler dev    --config wrangler.local.toml
 
 [doc1]: //developers.cloudflare.com/email-routing/get-started/
 [doc2]: //developers.cloudflare.com/email-routing/setup/email-routing-addresses/#destination-addresses
+[doc3]: //developers.cloudflare.com/email-routing/setup/email-routing-addresses/#subaddressing
 [dash-enable]: //dash.cloudflare.com/?to=/:account/:zone/email/routing/overview
 [dash-verify]: //dash.cloudflare.com/?to=/:account/:zone/email/routing/destination-address
 [dash-catch]:  //dash.cloudflare.com/?to=/:account/:zone/email/routing/routes/catch_all
+[dash-subadd]: //dash.cloudflare.com/?to=/:account/:zone/email/routing/settings

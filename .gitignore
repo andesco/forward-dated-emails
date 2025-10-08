@@ -4,15 +4,15 @@ worker-configuration.d.ts
 
 # Wrangler
 .wrangler/
-wrangler.toml.local
-*.local.toml
-wrangler.local.toml
+wrangler.local.*
+wrangler.*.local
 
 # LLM
 .claude/
 AGENT.md
 CLAUDE.md
 GEMINI.md
+commit.md
 
 # Dependencies
 node_modules/

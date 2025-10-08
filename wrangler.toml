@@ -1,6 +1,6 @@
 # public config; deploy with `wrangler deploy`
 name = "forward-dated-emails"
-main = "src/index.js"
+main = "index.js"
 compatibility_date = "2024-12-19"
 account_id = ""
 

@@ -19,8 +19,7 @@ The email worker parses the recipient email address for a date in `YYYY-MM-DD` f
     
 2. **Add verified [destination addresses][doc2]**:\
    Domain → <nobr>Email Routing</nobr> → [<nobr>Destination addresses</nobr>][dash-catch]
-   > At least one destination address is required. Email workers can only route to approved email addresses, even if the email domain remains the same (catch-all routing to custom).
-
+   > At least one destination address is required. Email workers can only route to email address that have been approved as [destination addresses][dash-catch]. This restriction also applies to routing between email address with the same domain.
 
 ## Deploy to Cloudflare
    
@@ -38,8 +37,7 @@ The email worker parses the recipient email address for a date in `YYYY-MM-DD` f
    # edit wrangler.toml
    wrangler deploy
    ```
- 
- 
+
 ## Setup
 
 ### Use Catach-All Address: `.YYYY-MM-DD`
@@ -85,8 +83,11 @@ If your catch-all address is disabled, you can selectively use `expiring-email-r
    
    `mailbox+{date}+{CUSTOM_TAG}@example.dev` → `CUSTOM_TAG`
 
-   > [!note]
-   > [Subaddressing] is also known as sub-addressing, plus addressing, and tagged addressing.
+> [!note]
+> [Subaddressing] is also known as sub-addressing, plus addressing, and tagged addressing.
+
+> [!important]
+> Email workers can only route to email address that have been approved as [destination addresses][dash-catch]. This restriction also applies to routing between email address with the same domain.
 
 ## Environment Variables
 

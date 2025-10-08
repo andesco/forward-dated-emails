@@ -1,6 +1,6 @@
 # Expiring Emails with Cloudflare Email Routing
 
-**`forward-dated-emails`** is a Cloudflare Email Worker that redirects or drops emails based on an expiration date embedded in the recipient address.
+**`expiring-email-routing`** is a Cloudflare Email Worker that redirects or drops emails based on an expiration date embedded in the recipient address.
 
 The email worker parses the recipient email address for a date in `YYYY-MM-DD` format and only forwards the email if the date has not passed:
 
@@ -17,40 +17,41 @@ The email worker parses the recipient email address for a date in `YYYY-MM-DD` f
 
     > Use a new or unused domain name with Email Routing. Cloudflare offers registrations [priced at cost][pricing].
     
-2. **Add [verified email addresses][doc2]**:\
+2. **Add verified [destination addresses][doc2]**:\
    […] <nobr>Email Routing</nobr> → [<nobr>Destination addresses</nobr>][dash-catch]
-   > A worker can only redirect to an approved destination email, even if the domain is the same.
+   > At least one destination address is required. Email workers can only route to approved email addresses, even if the email domain remains the same (catch-all routing to custom).
 
-3. **Enable [subaddressing][doc3]**:\
+  3. **Enable [subaddressing][doc3]**:\
    […] <nobr>Email Routing</nobr> → [Settings][dash-subadd]
 
-### Setup
+## Setup
 
-1. **Deploy** `forward-dated-emails` to Cloudflare.
+1. **Deploy** `expiring-email-routing` to Cloudflare.
 
 2. **Enable** the Catch-all email address:\
    Account → Domain → <nobr>Email Routing</nobr> → <nobr>Routing Rules</nobr> → [Catch&#8209;all: Edit][dash-catch]
 
 3. Action: `Send to Worker`\
-   Destination: `forward-dated-emails`\
+   Destination: `expiring-email-routing`\
    Save.
 
-## <nobr>Deploy to Cloudflare</nobr>
+
+## Deploy to Cloudflare
 
 ### Cloudflare Dashboard
 
-[![<nobr>Deploy to Cloudflare</nobr>](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/andesco/forward-dated-emails)
+[![<nobr>Deploy to Cloudflare</nobr>](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/andesco/expiring-email-routing)
 
 <nobr>Workers & Pages</nobr> → Create an application → [Clone a repository](https://dash.cloudflare.com/?to=/:account/workers-and-pages/create/deploy-to-workers):
    ```
-   http://github.com/andesco/forward-dated-emails
+   http://github.com/andesco/expiring-email-routing
    ```
 
 ### Wrangler CLI
 
 ```bash
-git clone https://github.com/andesco/forward-dated-emails
-cd forward-dated-emails
+git clone https://github.com/andesco/expiring-email-routing
+cd expiring-email-routing
 # edit wrangler.toml
 wrangler deploy
 ```

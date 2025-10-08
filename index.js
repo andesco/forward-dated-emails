@@ -142,25 +142,41 @@ export default {
       return;
     }
 
-    // STEP 4: Dynamic forwarding with date removal
-    const cleanedLocalPart = removeDateFromLocalPart(localPart);
+     // STEP 4: Dynamic forwarding with date removal and tag matching
+     const cleanedLocalPart = removeDateFromLocalPart(localPart);
 
-    if (!cleanedLocalPart) {
-      await message.setReject("Invalid recipient address: no local part remains after removing date.");
-      return;
-    }
+     if (!cleanedLocalPart) {
+       await message.setReject("Invalid recipient address: no local part remains after removing date.");
+       return;
+     }
 
-    const dynamicAddress = `${cleanedLocalPart}@${domain}`;
+     // Check for tag-based forwarding
+     const tags = cleanedLocalPart.split('+');
+     let destinationAddress = null;
 
-    try {
-      await message.forward(dynamicAddress);
-    } catch (error) {
-      if (error.message && error.message.includes('destination address not verified')) {
-        await message.setReject(`Unable to forward to ${dynamicAddress}. This address is not configured in Email Routing.`);
-      } else {
-        // Re-throw unexpected errors
-        throw error;
-      }
-    }
+     for (const tag of tags) {
+       // Find matching env var (case-insensitive)
+       const matchedKey = Object.keys(env).find(key => key.toLowerCase() === tag.toLowerCase());
+       if (matchedKey) {
+         destinationAddress = env[matchedKey];
+         break; // Use the first matching tag
+       }
+     }
+
+     // If no tag matched, use the cleaned local part as before
+     if (!destinationAddress) {
+       destinationAddress = `${cleanedLocalPart}@${domain}`;
+     }
+
+     try {
+       await message.forward(destinationAddress);
+     } catch (error) {
+       if (error.message && error.message.includes('destination address not verified')) {
+         await message.setReject(`Unable to forward to ${destinationAddress}. This address is not configured in Email Routing.`);
+       } else {
+         // Re-throw unexpected errors
+         throw error;
+       }
+     }
   },
 };
